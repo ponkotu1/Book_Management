@@ -1,5 +1,6 @@
 package dao;
 
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.Admin;
+import dto.Users;
 import util.GenerateHashedPw;
 import util.GenerateSalt;
 
@@ -116,14 +118,14 @@ public class AdminDAO {
 		return null;
 	}
 	
-	// 登録された全管理者の取得
-	public static List<Admin> selectAdminByAccount(){
+	// 登録された全一般ユーザの取得
+	public static List<Users> selectAdminByAccount(){
 		
 		// 実行するSQL
-		String sql = "SELECT * FROM admin";
+		String sql = "SELECT * FROM user";
 		
 		// 返却用のListインスタンス
-		List<Admin> result = new ArrayList<>();
+		List<Users> result = new ArrayList<>();
 				
 		try (
 				Connection con = getConnection();
@@ -137,8 +139,8 @@ public class AdminDAO {
 					String name = rs.getString("name");
 					String mail = rs.getString("mail");
 
-					 Admin ad = new Admin(id, name, mail, null, null, null);
-					result.add(ad);
+					 Users us = new Users(id, name, mail, null, null);
+					result.add(us);
 				}
 			}
 			
