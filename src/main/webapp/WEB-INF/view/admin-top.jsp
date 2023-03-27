@@ -13,7 +13,7 @@
 	%>
 	<h2>ようこそ<%=ad.getName() %>さん</h2>
 	<a href="#">TOPページ</a>
-	<a href="#">管理者新規登録</a>
+	<a href="AdminRegisterServlet">管理者新規登録</a>
 	<a href="AdminLogoutServlet">ログアウト</a>
 	<a href="#">本の登録</a>
 	<a href="#">本の削除</a>

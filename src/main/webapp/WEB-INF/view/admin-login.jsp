@@ -19,7 +19,7 @@
 		パスワード：<input class=p type="password" name="pw">
 		<input class=b type="submit" value="Sign in">
 	</form>
-	<a class=bu href="AdminRegisterServlet">新規登録はこちら</a>
+	<a href="./">戻る</a>
 	<%
 		} else {
 	%>
@@ -29,7 +29,7 @@
 		パスワード：<input class=p type="password" name="pw">
 	<input class=b type="submit" value="Sign in">
 	</form>
-	<a class=bu href="AdminRegisterServlet">新規登録はこちら</a>
+	<a href="./">戻る</a>
 	<%
 		}
 	%>
