@@ -1,48 +1,75 @@
 @charset "UTF-8";
-ul.example01-03 { 
-  list-style: none;
-  padding-left: 0;
-  
-}
-ul.example01-02 li {
-  width: 200px;
-  background: #877666;
-  padding: 8px 20px;
-  margin-bottom: 5px;
-  
-}
-ul.example01-02 li a { 
-  display: block;
-  height: 100%;
-  color:#fff; 
-}
-ul{
-	padding-left: 0px;
-}
-body {
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: 
-    linear-gradient(140deg, 
-      #ffffff, 
-      #0028b960 40%, 
-      #00f3ff60 60%, 
-      #ff0000), 
-    url("https://img.huffingtonpost.com/asset/5cbfdb7d1f000053017f33be.jpeg?cache=xGrFL9AqNU&ops=scalefit_720_noupscale");
-  background-repeat: no-repeat;
-  background-position: 50%;
-  animation: move 20s infinite both;
+
+
+container-fluid{
+	height:300px
 }
 
-@keyframes move{
-  0% {
-    background-size:100% auto;
-  }
-  50% {
-    background-size:140% auto;
-  }
-  100% {
-    background-size:100% auto;
-  }
+.news-list{
+  list-style: none outside;
+  float:right;
+  margin-right: 140px;
+  padding: 0;
 }
+
+.news-list{
+	 position: absolute;
+ right: 0;
+ top: 150px;
+}
+
+.news-list font{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.news-list .item a{
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #CCC;
+  padding: 20px 20px;
+}
+.news-list .item:first-child a{
+  border-top: 1px solid #CCC;
+}
+.news-list .item .date{
+  margin: 0;
+  min-width: 120px;
+  font-size: 16px;
+  color: #999;
+  padding: 0 20px 0 0;
+}
+.news-list .item .title{
+  margin: 0;
+  width: 100%;
+}
+.news-list .item a:hover .title{
+  color: #00F;
+}
+
+@media screen and (max-width: 767px){.news-list .item a{
+  flex-wrap: wrap;
+}
+.news-list .item .date{
+  min-width: 100px;
+}
+.news-list .item .title{
+  margin-top: 10px;
+}
+
+/* 装飾 */
+ 
+*{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+body{
+  margin: 20px;
+ }
+ }
