@@ -8,22 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.UsersDAO;
-import dto.Users;
 
 /**
- * Servlet implementation class UsersRegisterServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/UsersRegisterServlet")
-public class UsersExcecutServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersExcecutServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +28,9 @@ public class UsersExcecutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Users user = (Users)session.getAttribute("input_data");
-		
-		int result = UsersDAO.registerAccount(user);
-		
-		String path = "";
-		if(result == 1) {
-			// 登録に成功したので、sessionのデータを削除
-			session.removeAttribute("input_data");
-			
-			path = "WEB-INF/view/loginform.jsp";
-		} else {
-			// 失敗した場合はパラメータ付きで登録画面に戻す
-			path = "WEB-INF/view/form.jsp?error=1";
-		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+		String view = "WEB-INF/view/LoginForm.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);	
 	}
 
 	/**

@@ -16,13 +16,13 @@ import dto.Users;
  * Servlet implementation class UsersExcecutConfirmServlet
  */
 @WebServlet("/UsersExcecutConfirmServlet")
-public class UsersExcecutConfirmServlet extends HttpServlet {
+public class UsersExcecuteConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersExcecutConfirmServlet() {
+    public UsersExcecuteConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +34,10 @@ public class UsersExcecutConfirmServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String name = request.getParameter("name");
-		String mail = request.getParameter("mail");
-		String pw = request.getParameter("pw");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("password");
 		
-		Users user = new Users(0, name, mail, pw, null);
+		Users user = new Users(0, name, email, pw, null);
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("input_data", user);
