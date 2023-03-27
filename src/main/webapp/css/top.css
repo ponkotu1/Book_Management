@@ -8,17 +8,17 @@ container-fluid{
 .news-list{
   list-style: none outside;
   float:right;
-  margin-right: 150px;
+  margin-right: 140px;
   padding: 0;
 }
 
 .news-list{
 	 position: absolute;
  right: 0;
- top: 160px;
+ top: 150px;
 }
 
-.news-list p{
+.news-list font{
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
