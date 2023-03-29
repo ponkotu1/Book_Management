@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div style="text-align:center; padding: 20px;  font-size: 200%;">
 	<p>下記の内容で登録します。よろしいですか？</p>
 	<%
 	Users user = (Users)session.getAttribute("input_data");
@@ -18,5 +18,6 @@
 	パスワード：********<br>
 	<a href="UsersExcecuteServlet">OK</a><br>
 	<a href="UsersRegisterFormServlet">戻る</a>
+	</div>
 </body>
 </html>
