@@ -105,7 +105,6 @@ public class AdminDAO {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
 					String salt = rs.getString("salt");
-					String createdAt = rs.getString("created_at");
 					
 					return new Admin(id, name, mail, salt, null, null);
 				}
@@ -119,7 +118,7 @@ public class AdminDAO {
 	}
 	
 	// 登録された全一般ユーザの取得
-	public static List<Users> selectAdminByAccount(){
+	public static List<Users> selectUsersByUsers(){
 		
 		// 実行するSQL
 		String sql = "SELECT * FROM user";
@@ -137,9 +136,9 @@ public class AdminDAO {
 				while(rs.next()) {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
-					String mail = rs.getString("mail");
+					String email = rs.getString("mail");
 
-					 Users us = new Users(id, name, mail, null, null);
+					 Users us = new Users(id, name, email, null, null);
 					result.add(us);
 				}
 			}
@@ -154,5 +153,27 @@ public class AdminDAO {
 		return result;
 	}
 	
+	// 一般ユーザの削除
+	public static int deleteUsers(int id) {
+		String sql = "DELETE FROM user WHERE id = ?";
+		int result = 0;
+
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			
+			pstmt.setInt(1, id);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(result + "件削除しました。");
+		}
+		return result;
+	}
 }
 

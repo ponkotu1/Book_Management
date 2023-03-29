@@ -15,7 +15,7 @@
 	%>
 	名前：<%=admin.getName() %>
 	メール：<%=admin.getMail() %>パスワード：********
-	<a class=bu href="AdminRegisterExecuteServlet">登録する</a><br>
-	<a class=bu href="AdminRegisterServlet">戻る</a>
+	<a href="AdminRegisterExecuteServlet">登録する</a><br>
+	<a href="AdminRegisterServlet">戻る</a>
 </body>
 </html>

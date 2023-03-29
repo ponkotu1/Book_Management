@@ -18,7 +18,7 @@
 	<a href="#">本の登録</a>
 	<a href="#">本の削除</a>
 	<a href="#">本の検索</a>
-	<a href="#">ユーザー管理</a>
+	<a href="ListAllUsersServlet">ユーザー管理</a>
 	<a href="#">お知らせ管理</a>
 </body>
 </html>
