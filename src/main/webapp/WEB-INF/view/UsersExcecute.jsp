@@ -15,7 +15,7 @@
 			Users user = (Users)session.getAttribute("input_data");
 	%>
 		<p style="color:red">登録に失敗しました。</p>
-		<h2>Registration Form</h2>
+		<h2>新規登録</h2>
 		<form action="UsersExcecutConfirmServlet" method="post">
 		<label for="name">Name:</label>
 		<input type="text" id="name" name="name" required><br>
@@ -31,7 +31,7 @@
 	<%
 		} else {
 	%>
-	<h2>Registration Form</h2>
+	<h2>新規登録</h2>
 	<form action="UsersExcecutConfirmServlet" method="post">
 		<label for="name">Name:</label>
 		<input type="text" id="name" name="name" required><br>

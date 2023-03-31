@@ -23,6 +23,8 @@
     	<input type="password" id="psssword" name="pw" required><span class="highlight"></span><span class="bar"></span>
     	<label>Password</label>
   	</div>
+  	<a href="UsersFormServlet">新規登録はこちらから</a>
+  	
   	<button type="submit" class="button buttonBlue">ログイン 
     	<div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
   	</button>
