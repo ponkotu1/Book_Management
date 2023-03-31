@@ -44,8 +44,8 @@ public class UsersDAO {
 				){
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getEmail());
-			pstmt.setString(3, salt);
-			pstmt.setString(4, hashedPw);
+			pstmt.setString(3, hashedPw);
+			pstmt.setString(4, salt);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -80,14 +80,14 @@ public class UsersDAO {
 		}
 		return null;
 	}
-	public static Users login(String mail, String hashedPw) {
-		String sql = "SELECT * FROM users WHERE mail = ? AND password = ?";
+	public static Users login(String email, String hashedPw) {
+		String sql = "SELECT * FROM users WHERE mail = ? AND passward = ?";
 		
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setString(1, mail);
+			pstmt.setString(1, email);
 			pstmt.setString(2, hashedPw);
 
 			try (ResultSet rs = pstmt.executeQuery()){
@@ -95,10 +95,9 @@ public class UsersDAO {
 				if(rs.next()) {
 					int id = rs.getInt("id");
 					String name = rs.getString("name");
-					String age = rs.getString("salt");
-					String createdAt = rs.getString("created_at");
+					String salt = rs.getString("salt");
 					
-					return new Users(id, name, mail, age, null);
+					return new Users(id, name, email, null, salt);
 							
 				}
 			}

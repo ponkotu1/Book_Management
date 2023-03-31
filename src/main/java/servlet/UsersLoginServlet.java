@@ -33,11 +33,11 @@ public class UsersLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("email");
 		String pw = request.getParameter("pw");
 		
 		// 入力されたIDをもとにソルトを取得する。
-		String salt = UsersDAO.getSalt(mail);
+		String salt = UsersDAO.getSalt(email);
 		
 		// 取得したソルトがnullの場合は対象のユーザがいないので、Errorでログイン画面に戻す
 		if(salt == null) {
@@ -51,7 +51,7 @@ public class UsersLoginServlet extends HttpServlet {
 		String hashedPw = GenerateHashedPw.getSafetyPassword(pw, salt);
 		
 		// 入力されたID、ハッシュしたPWに一致するユーザを検索する
-		Users user = UsersDAO.login(mail, hashedPw);
+		Users user = UsersDAO.login(email, hashedPw);
 		
 		// 一致するユーザがいなければ、ログイン失敗
 		if(user == null) {
@@ -63,7 +63,7 @@ public class UsersLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
-			String view = "WEB-INF/view/top.jsp";
+			String view = "WEB-INF/view/Top.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 				}
