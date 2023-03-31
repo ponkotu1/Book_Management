@@ -63,7 +63,7 @@ public class UsersLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
-			String view = "WEB-INF/view/top.jsp";
+			String view = "WEB-INF/view/login.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 				}

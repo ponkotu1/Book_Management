@@ -29,7 +29,7 @@ public class UsersDAO {
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	public static int registerAccount(Users user) {
-		String sql = "INSERT INTO users VALUES(default, ?, ?, ?, ? )";
+		String sql = "INSERT INTO general VALUES(default, ?, ?, ?, ? )";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -58,7 +58,7 @@ public class UsersDAO {
 		return result;
 	}
 	public static String getSalt(String mail) {
-		String sql = "SELECT salt FROM users WHERE mail = ?";
+		String sql = "SELECT salt FROM general WHERE mail = ?";
 	
 		try (
 				Connection con = getConnection();
@@ -81,7 +81,7 @@ public class UsersDAO {
 		return null;
 	}
 	public static Users login(String mail, String hashedPw) {
-		String sql = "SELECT * FROM users WHERE mail = ? AND password = ?";
+		String sql = "SELECT * FROM general WHERE mail = ? AND password = ?";
 		
 		try (
 				Connection con = getConnection();
