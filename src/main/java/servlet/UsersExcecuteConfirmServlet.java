@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.BookDAO;
-import dto.Book;
+import dto.Users;
 
 /**
- * Servlet implementation class kadai901servlet
+ * Servlet implementation class UsersExcecutConfirmServlet
  */
-@WebServlet("/Tosyoallformservlet")
-public class Tosyoallformservlet extends HttpServlet {
+@WebServlet("/UsersExcecutConfirmServlet")
+public class UsersExcecuteConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Tosyoallformservlet() {
+    public UsersExcecuteConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +31,20 @@ public class Tosyoallformservlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// DBから全件データを取得
-		List<Book> bookList = BookDAO. selectAllBook();
+		request.setCharacterEncoding("UTF-8");
 		
-		// 取得したリストをリクエストスコープに保管(JSPに渡すため)
-		request.setAttribute("list", bookList);
-		String view = "WEB-INF/view/Tosyoallform.jsp";
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("password");
+		
+		Users user = new Users(0, name, email, pw, null);
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("input_data", user);
+		
+		String view = "WEB-INF/view/UsersConfirm.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);	
 	}
 
 	/**

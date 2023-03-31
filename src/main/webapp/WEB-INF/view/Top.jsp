@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>図書管理システム</title>
-<style>
-</style>
+<title>Insert title here</title>
 </head>
 <body>
-     <h1>登録に失敗しました。</h1>
-     <a href="Tosyohomeservlet">戻る</a>
+	<h1>成功</h1>
 </body>
 </html>
