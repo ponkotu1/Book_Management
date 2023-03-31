@@ -34,7 +34,7 @@ public class AdminDAO {
 	}
 	
 	public static int registerAdmin(Admin admin) {
-		String sql = "INSERT INTO admin VALUES(default, ?, ?, ?, ?, current_timestamp)";
+		String sql = "INSERT INTO admin VALUES(default, ?, ?, ?, ? )";
 		int result = 0;
 		
 		// ランダムなソルトの取得(今回は32桁で実装)
@@ -48,9 +48,9 @@ public class AdminDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
 			pstmt.setString(1, admin.getName());
-			pstmt.setString(2, admin.getMail());
-			pstmt.setString(3, salt);
-			pstmt.setString(4, hashedPw);
+			pstmt.setString(2, admin.getEmail());
+			pstmt.setString(3, hashedPw);
+			pstmt.setString(4, salt);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class AdminDAO {
 	
 	// メールアドレスを元にソルトを取得
 	public static String getSalt(String mail) {
-		String sql = "SELECT salt FROM snsaccount WHERE mail = ?";
+		String sql = "SELECT salt FROM admin WHERE mail = ?";
 		
 		try (
 				Connection con = getConnection();
@@ -74,7 +74,7 @@ public class AdminDAO {
 			pstmt.setString(1, mail);
 
 			try (ResultSet rs = pstmt.executeQuery()){
-				
+			
 				if(rs.next()) {
 					String salt = rs.getString("salt");
 					return salt;
@@ -89,14 +89,14 @@ public class AdminDAO {
 	}
 	
 	// ログイン処理
-	public static Admin login(String mail, String hashedPw) {
+	public static Admin login(String email, String hashedPw) {
 		String sql = "SELECT * FROM admin WHERE mail = ? AND password = ?";
 		
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setString(1, mail);
+			pstmt.setString(1, email);
 			pstmt.setString(2, hashedPw);
 
 			try (ResultSet rs = pstmt.executeQuery()){
@@ -106,7 +106,7 @@ public class AdminDAO {
 					String name = rs.getString("name");
 					String salt = rs.getString("salt");
 					
-					return new Admin(id, name, mail, salt, null, null);
+					return new Admin(id, name, email, null, salt);
 				}
 			}
 		} catch (SQLException e) {

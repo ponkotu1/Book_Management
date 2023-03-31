@@ -14,7 +14,8 @@
 	Admin admin = (Admin)session.getAttribute("input_data");
 	%>
 	名前：<%=admin.getName() %>
-	メール：<%=admin.getMail() %>パスワード：********
+	メール：<%=admin.getEmail() %>
+	パスワード：********<br>
 	<a href="AdminRegisterExecuteServlet">登録する</a><br>
 	<a href="AdminRegisterServlet">戻る</a>
 </body>

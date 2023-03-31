@@ -32,13 +32,9 @@ public class AdminRegisterExecuteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// セッションスコープのインスタンス取得
 		HttpSession session = request.getSession();
-
-		// 入力データの取得
 		Admin admin = (Admin)session.getAttribute("input_data");
 		
-		// 登録処理
 		int result = AdminDAO.registerAdmin(admin);
 		
 		String path = "";

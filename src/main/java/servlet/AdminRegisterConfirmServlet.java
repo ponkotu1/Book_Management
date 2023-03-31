@@ -34,22 +34,17 @@ public class AdminRegisterConfirmServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String name = request.getParameter("name");
-		String mail = request.getParameter("email");
-		String pw = request.getParameter("pw");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("password");
 		
-		Admin admin = new Admin(-1, name, mail, null, pw, null);
-		
-		// セッションスコープのインスタンス取得
+		Admin admin = new Admin(0, name, email, pw, null);
 		HttpSession session = request.getSession();
 		
-		// セッションスコープに値の保存
-		// 第1引数：キー
-		// 第2引数：保存する値
 		session.setAttribute("input_data", admin);
 		
 		String view = "WEB-INF/view/admin-confirm.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);	
 	}
 
 	/**

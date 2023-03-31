@@ -10,29 +10,40 @@
 <body>
 	<%
 	request.setCharacterEncoding("UTF-8");
-			String errorCode = request.getParameter("error");
-			if(errorCode != null && errorCode.equals("1")){
-		Admin ad = (Admin)session.getAttribute("input_data");
+		String errorCode = request.getParameter("error");
+		if(errorCode != null && errorCode.equals("1")){
+			Admin admin = (Admin)session.getAttribute("input_data");
 	%>
-		<h4 style="color:red">登録に失敗しました。</h4>
+		<p style="color:red">登録に失敗しました。</p>
+		<h2>Registration Form</h2>
 		<form action="AdminRegisterConfirmServlet" method="post">
-			メール：<input type="email" name="email" value="<%=ad.getMail()%>">
-		<div><input class=b type="submit" value="送信"></div>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br>
+
+		<label for="mail">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required><br>
+
+		<input type="submit" value="Register">
 		</form>
-		<div id=button>
-		<a class=bu href="./">ログイン画面へ戻る</a>
-		</div>		
 	<%
 		} else {
 	%>
+	<h2>Registration Form</h2>
 	<form action="AdminRegisterConfirmServlet" method="post">
-		メール：<input class=p type="email" name="email">
-		<div><input type="submit" value="送信"></div>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br>
+
+		<label for="mail">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required><br>
+
+		<input type="submit" value="Register">
 	</form>
-		<br>
-		<div id=button>
-		<a class=bu href="./">ログイン画面へ戻る</a>
-		</div>
 	<%
 		}
 	%>

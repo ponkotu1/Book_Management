@@ -1,68 +1,58 @@
 package dto;
 
 public class Admin {
-	private int id;
-	private String name;
-	private String mail;
-	private String salt;
-	private String password;
-	private String hashedPassword;
-	
-	public Admin(int id, String name, String mail, String salt, String password, String hashedPassword) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.mail = mail;
-		this.salt = salt;
-		this.password = password;
-		this.hashedPassword = hashedPassword;
-	}
+	 private int id;
+	    private String name;
+	    private String email;
+	    private String password;
+	    private String salt;
 
-	public int getId() {
-		return id;
-	}
+	    public Admin(int id, String name, String email, String password, String salt) {
+	        this.id = id;
+	        this.name = name;
+	        this.email = email;
+	        this.password = password;
+	        this.salt = salt;
+	    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	    // getters and setters
+	    public int getId() {
+	        return id;
+	    }
 
-	public String getName() {
-		return name;
-	}
+	    public void setId(int id) {
+	        this.id = id;
+	    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	    public String getName() {
+	        return name;
+	    }
 
-	public String getMail() {
-		return mail;
-	}
+	    public void setName(String name) {
+	        this.name = name;
+	    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+	    public String getEmail() {
+	        return email;
+	    }
 
-	public String getSalt() {
-		return salt;
-	}
+	    public void setEmail(String email) {
+	        this.email = email;
+	    }
 
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
+	    public String getPassword() {
+	        return password;
+	    }
 
-	public String getPassword() {
-		return password;
-	}
+	    public void setPassword(String password) {
+	        this.password = password;
+	    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	    public String getSalt() {
+	        return salt;
+	    }
 
-	public String getHashedPassword() {
-		return hashedPassword;
-	}
-
-	public void setHashedPassword(String hashedPassword) {
-		this.hashedPassword = hashedPassword;
-	}
+	    public void setSalt(String salt) {
+	        this.salt = salt;
+	    }
 }
