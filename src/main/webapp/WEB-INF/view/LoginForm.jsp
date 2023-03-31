@@ -5,19 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" href="css/Login.css">
 </head>
 <body>
-	<h2>Login Form</h2>
+	
+	<hgroup>
+  	<h1>ログイン</h1>
+  	<h3>book managemaent app</h3>
+	</hgroup>
+	
 	<form action="UsersLoginServlet" method="post">
-		<label for="mail">Email:</label>
-		<input type="email" id="mail" name="mail" required><br>
-
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required><br>
-
-		<input type="submit" value="Login">
-		<a href="UeersExcecutServlet">新規登録はこちら</a>
-		
+  	<div class="group">
+    	<input type="email" id="mail" name="email" required><span class="highlight"></span><span class="bar"></span>
+    	<label>Email</label>
+  	</div>
+  	<div class="group">
+    	<input type="password" id="psssword" name="pw" required><span class="highlight"></span><span class="bar"></span>
+    	<label>Password</label>
+  	</div>
+  	<button type="submit" class="button buttonBlue">ログイン 
+    	<div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  	</button>
 	</form>
 </body>
 </html>

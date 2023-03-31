@@ -8,18 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.UsersDAO;
+import dto.Users;
 
 /**
- * Servlet implementation class CommentServlet
+ * Servlet implementation class UsersRegisterServlet
  */
-@WebServlet("/CommentServlet")
-public class CommentServlet extends HttpServlet {
+@WebServlet("/UsersExcecuteServlet")
+public class UsersExcecuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentServlet() {
+    public UsersExcecuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +32,25 @@ public class CommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	            String view = "WEB-INF/view/CommentTop.jsp";
-	    		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-	    		dispatcher.forward(request, response);	}
+		HttpSession session = request.getSession();
+		Users user = (Users)session.getAttribute("input_data");
+		
+		int result = UsersDAO.registerAccount(user);
+		
+		String path = "";
+		if(result == 1) {
+			// 登録に成功したので、sessionのデータを削除
+			session.removeAttribute("input_data");
+			
+			path = "WEB-INF/view/LoginFrom.jsp";
+		} else {
+			// 失敗した場合はパラメータ付きで登録画面に戻す
+			path = "WEB-INF/view/UsersExcecute.jsp?error=1";
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+		dispatcher.forward(request, response);
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -38,5 +58,5 @@ public class CommentServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
+
 }

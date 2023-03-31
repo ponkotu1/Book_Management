@@ -8,21 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dto.Users;
 
 /**
- * Servlet implementation class UsersExcecutConfirmServlet
+ * Servlet implementation class UsersExecuteServlet
  */
-@WebServlet("/UsersExcecutConfirmServlet")
-public class UsersExcecutConfirmServlet extends HttpServlet {
+@WebServlet("/UsersFormServlet")
+public class UsersFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersExcecutConfirmServlet() {
+    public UsersFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +28,7 @@ public class UsersExcecutConfirmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		String name = request.getParameter("name");
-		String mail = request.getParameter("mail");
-		String pw = request.getParameter("pw");
-		
-		Users user = new Users(0, name, mail, pw, null);
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("input_data", user);
-		
-		String view = "WEB-INF/view/UsersConfirm.jsp";
+		String view = "WEB-INF/view/UsersExcecute.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);	
 	}
