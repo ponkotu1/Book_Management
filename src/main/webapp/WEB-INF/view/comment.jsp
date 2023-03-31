@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>失敗</title>
+<title>本のコメントを追加</title>
 </head>
 <body>
-
+    <a href="CommentServlet">コメントの追加</a><br>
+    
 </body>
 </html>
