@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UsersDAO;
 import dto.Users;
 
 /**
- * Servlet implementation class UsersRegisterServlet
+ * Servlet implementation class UsersExcecutConfirmServlet
  */
-@WebServlet("/UsersExcecuteServlet")
-public class UsersExcecuteServlet extends HttpServlet {
+@WebServlet("/UsersExcecutConfirmServlet")
+public class UsersExcecuteConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersExcecuteServlet() {
+    public UsersExcecuteConfirmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +31,20 @@ public class UsersExcecuteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("password");
+		
+		Users user = new Users(0, name, email, pw, null);
 		HttpSession session = request.getSession();
-		Users user = (Users)session.getAttribute("input_data");
 		
-		int result = UsersDAO.registerAccount(user);
+		session.setAttribute("input_data", user);
 		
-		String path = "";
-		if(result == 1) {
-			// 登録に成功したので、sessionのデータを削除
-			session.removeAttribute("input_data");
-			
-			path = "WEB-INF/view/LoginFrom.jsp";
-		} else {
-			// 失敗した場合はパラメータ付きで登録画面に戻す
-			path = "WEB-INF/view/UsersExcecute.jsp?error=1";
-		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);
+		String view = "WEB-INF/view/UsersConfirm.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+		dispatcher.forward(request, response);	
 	}
 
 	/**
